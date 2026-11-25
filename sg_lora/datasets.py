@@ -6,6 +6,7 @@ Unified MedMNIST v2 (224x224) DataLoader with:
   - Zero-shot test-time corruption transforms (Gaussian noise & Gaussian blur)
 """
 
+import os
 from typing import Tuple, Optional
 import numpy as np
 import torch
@@ -67,6 +68,7 @@ def build_medmnist_loaders(
     """
     Returns (train_loader, val_loader, test_loader, num_classes, class_weights).
     """
+    os.makedirs(data_root, exist_ok=True)
     name = dataset_name.lower()
     if name not in INFO:
         raise ValueError(f"Dataset '{name}' not in MedMNIST v2 INFO.")
